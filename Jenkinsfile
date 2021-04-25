@@ -3,6 +3,6 @@ node{
        git 'https://github.com/methelegend-sys/fisrt_jenkins'
     }
     stage('Compile-Package'){
-    	sh 'mvn package'
+    	'mvn clean install'
     }
 }
