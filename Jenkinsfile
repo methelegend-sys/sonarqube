@@ -15,7 +15,7 @@ pipeline{
             steps{
                 script{
                     dir("test"){
-                        bat 'touch $WORKSPACE/Artifact_$BUILD_NUMBER'
+                        bat 'echo $null >> $WORKSPACE/Artifact_$BUILD_NUMBER'
                     }
                 }
             }
