@@ -13,14 +13,14 @@ stage ("checkout")  {
     server = Artifactory.server('artifactory-server');
     rtMaven = Artifactory.newMavenBuild()
     rtMaven.tool = 'Maven3'
-    rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
-    rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server: server
+    //rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
+    //rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server: server
     //rtMaven.deployer.deployArtifacts = false // Disable artifacts deployment during Maven run
 
     //buildInfo = Artifactory.newBuildInfo()
     //rtMaven.tool = 'Maven3' // Tool name from Jenkins configuration
-    //rtMaven.deployer releaseRepo:'example-repo-local', snapshotRepo:'example-repo-local', server: server
-    //rtMaven.resolver releaseRepo:'example-repo-local', snapshotRepo:'example-repo-local', server: server
+    rtMaven.deployer releaseRepo:'example-repo-local', snapshotRepo:'example-repo-local', server: server
+    rtMaven.resolver releaseRepo:'example-repo-local', snapshotRepo:'example-repo-local', server: server
     buildInfo = Artifactory.newBuildInfo()
   }
   
