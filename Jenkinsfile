@@ -10,8 +10,8 @@ stage ("checkout")  {
 }
 
   stage ('Artifactory configuration') {
-    //server = Artifactory.server('artifactory-server');
-    //rtMaven = Artifactory.newMavenBuild()
+    server = Artifactory.server('artifactory-server');
+    rtMaven = Artifactory.newMavenBuild()
     //rtMaven.tool = 'Maven3'
     //rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
     //rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server: server
