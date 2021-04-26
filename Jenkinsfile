@@ -21,8 +21,8 @@ stage ("checkout")  {
   }
   
    stage ('Build') {
-       bat 'mvn clean install'
-        //rtMaven.run pom: 'MyWebApp/pom.xml', goals: 'install', buildInfo: buildInfo
+       //bat 'mvn clean install'
+        rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
     }
    
     stage ('Upload Artifacts') {
