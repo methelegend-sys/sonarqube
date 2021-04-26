@@ -26,7 +26,7 @@ stage ("checkout")  {
   
    stage ('Build') {
        //bat 'mvn clean install'
-        rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
+        rtMaven.run pom: 'pom.xml', goals: '-U clean install', buildInfo: buildInfo
     }
    
     stage ('Upload Artifacts') {
