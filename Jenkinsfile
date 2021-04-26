@@ -8,14 +8,14 @@ pipeline{
         }
         stage('mvn-Build'){
             steps{
-    	    bat 'mvn clean install'
+    	    sh 'mvn clean install'
             }
             }
         stage('Build'){
             steps{
                 script{
                     dir("test"){
-                        bat 'touch $WORKSPACE/Artifact_$BUILD_NUMBER'
+                        sh 'touch $WORKSPACE/Artifact_$BUILD_NUMBER'
                     }
                 }
             }
