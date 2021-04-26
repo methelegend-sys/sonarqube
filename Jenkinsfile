@@ -1,8 +1,10 @@
 pipeline{
     stages{
     stage('SCM Checkout'){
+        script{
        git 'https://github.com/methelegend-sys/fisrt_jenkins'
-    }
+        }
+        }
         stage('mvn-Build'){
     	    bat 'mvn clean install'
         }
