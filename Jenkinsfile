@@ -2,7 +2,6 @@ node{
     stage('SCM Checkout'){
        git 'https://github.com/methelegend-sys/fisrt_jenkins'
     }
-    stages{
         stage('mvn-Build'){
     	    bat 'mvn clean install'
         }
@@ -82,4 +81,4 @@ node{
         
         
     }
-}
+
