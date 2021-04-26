@@ -1,7 +1,7 @@
 pipeline{
     stages{
     stage('SCM Checkout'){
-        script{
+        steps{
        git 'https://github.com/methelegend-sys/fisrt_jenkins'
         }
         }
