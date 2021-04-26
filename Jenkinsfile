@@ -19,8 +19,8 @@ stage ("checkout")  {
 
     //buildInfo = Artifactory.newBuildInfo()
     //rtMaven.tool = 'Maven3' // Tool name from Jenkins configuration
-    rtMaven.deployer releaseRepo:'newdemo', snapshotRepo:'newdemo', server: server
-    rtMaven.resolver releaseRepo:'newdemo', snapshotRepo:'newdemo', server: server
+    rtMaven.deployer releaseRepo:'demo-demoproject', snapshotRepo:'demo-demoproject', server: server
+    rtMaven.resolver releaseRepo:'demo-demoproject', snapshotRepo:'demo-demoproject', server: server
     buildInfo = Artifactory.newBuildInfo()
   }
   
