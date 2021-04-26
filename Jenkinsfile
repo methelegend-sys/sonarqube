@@ -1,4 +1,5 @@
-node{
+pipeline{
+    stages{
     stage('SCM Checkout'){
        git 'https://github.com/methelegend-sys/fisrt_jenkins'
     }
@@ -81,4 +82,4 @@ node{
         
         
     }
-
+}
