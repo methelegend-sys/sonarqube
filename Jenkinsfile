@@ -6,7 +6,7 @@ node {
     def mvnHome = tool 'Maven3'
 
 stage ("checkout")  {
-   //checkout code
+   git 'https://github.com/methelegend-sys/fisrt_jenkins'
 }
 
   stage ('Artifactory configuration') {
