@@ -70,9 +70,7 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.1.2</version>
                 </plugin>
-            </plugins>
-        </pluginManagement>
-        <plugins>
+         
             <plugin>
                 <groupId>org.jfrog.buildinfo</groupId>
                 <artifactId>artifactory-maven-plugin</artifactId>
@@ -128,6 +126,7 @@
                 </configuration>
             </plugin>
         </plugins>
+      </pluginManagement>
     <finalName>first</finalName>
   </build>
 </project>
