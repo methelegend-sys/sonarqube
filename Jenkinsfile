@@ -1,38 +1,113 @@
-node {
-
-    def server
-    def buildInfo
-    def rtMaven
-    def mvnHome = tool 'Maven3'
-
-stage ("checkout")  {
-   git 'https://github.com/methelegend-sys/fisrt_jenkins'
+pipeline{
+    agent any
+    stages{
+        stage("Clone"){
+            steps{
+                echo "========executing Clone========"
+                git 'https://github.com/methelegend-sys/fisrt_jenkins.git'
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========Clone executed successfully========"
+                }
+                failure{
+                    echo "========Clone execution failed========"
+                }
+            }
+        }
+        stage("Initialize Artifactory"){
+            steps{
+                echo "====++++executing Initialize Artifactory++++===="
+                rtServer (
+                    id: 'Artifactory-Server',
+                    url: 'http://localhost:8081/artifactory',
+                    credentialsId: 'ArtifactoryLocal',
+                    timeout: 300
+                )
+                rtMavenDeployer (
+                    id: 'MAVEN_DEPLOYER',
+                    releaseRepo: 'maven-release',
+                    snapshotRepo: 'maven-snapshot',
+                    serverId: 'Artifactory-Server'
+                )
+                // rtMavenResolver (
+                //     id: "MAVEN_RESOLVER",
+                //     serverId: "ARTIFACTORY_SERVER",
+                //     releaseRepo: "local",
+                //     snapshotRepo: "local"
+                // )
+            }
+            post{
+                always{
+                    echo "====++++always++++===="
+                }
+                success{
+                    echo "====++++Initialize Artifactory executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Initialize Artifactory execution failed++++===="
+                }
+        
+            }
+        }
+        stage("Build"){
+            steps{
+                echo "====++++executing Build++++===="
+                rtMavenRun (
+                    tool: "Maven_3", // Tool name from Jenkins configuration
+                    pom: 'myapp/pom.xml',
+                    goals: 'clean install',
+                    deployerId: "MAVEN_DEPLOYER",
+                    // resolverId: "MAVEN_RESOLVER"
+                )
+                
+            }
+            post{
+                always{
+                    echo "====++++always++++===="
+                }
+                success{
+                    echo "====++++Build executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Build execution failed++++===="
+                }
+        
+            }
+        }
+        stage("Upload Artifacts"){
+            steps{
+                echo "====++++executing Upload Artifacts++++===="
+                rtPublishBuildInfo (
+                    serverId: "Artifactory-Server"
+                )
+            }
+            post{
+                always{
+                    echo "====++++always++++===="
+                }
+                success{
+                    echo "====++++Upload Artifacts executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Upload Artifacts execution failed++++===="
+                }
+        
+            }
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
 }
-
-  stage ('Artifactory configuration') {
-    server = Artifactory.server('artifactory-server');
-    rtMaven = Artifactory.newMavenBuild()
-    rtMaven.tool = 'Maven3'
-    //rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
-    //rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server: server
-    //rtMaven.deployer.deployArtifacts = false // Disable artifacts deployment during Maven run
-
-    //buildInfo = Artifactory.newBuildInfo()
-    //rtMaven.tool = 'Maven3' // Tool name from Jenkins configuration
-    rtMaven.deployer releaseRepo:'demo-demoproject', snapshotRepo:'demo-demoproject', server: server
-    rtMaven.resolver releaseRepo:'demo-demoproject', snapshotRepo:'demo-demoproject', server: server
-    buildInfo = Artifactory.newBuildInfo()
-  }
-  
-   stage ('Build') {
-       //bat 'mvn clean install'
-        rtMaven.run pom: 'myapp/pom.xml', goals: '-X -U clean install', buildInfo: buildInfo
-    }
-   
-    stage ('Upload Artifacts') {
-        rtMaven.deployer.deployArtifacts buildInfo
-       server.publishBuildInfo buildInfo
-    }
-}	
-
-
