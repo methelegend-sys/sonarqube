@@ -1,6 +1,6 @@
 node {
 	stage ('svn checkout'){
-		git 'https://github.com/methelegend-sys/fisrt_jenkins'
+		git 'https://github.com/methelegend-sys/sonarqube'
 	}
     stage('SonarQube analysis') {
         withSonarQubeEnv('sonarqube') {
