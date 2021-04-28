@@ -5,7 +5,7 @@ pipeline{
         stages{
 		
           stage('svn'){
-		  steps{
+		steps{
             git 'https://github.com/methelegend-sys/sonarqube.git'
           	}
 		}
@@ -38,5 +38,4 @@ pipeline{
                   
                 }  
               }
-	}
 }
