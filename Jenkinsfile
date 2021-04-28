@@ -83,7 +83,7 @@ pipeline{
                 echo "====++++executing Build++++===="
                 rtMavenRun (
                     tool: "Maven_3", // Tool name from Jenkins configuration
-                    pom: 'myapp/pom.xml',
+                    pom: 'pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
                     // resolverId: "MAVEN_RESOLVER"
