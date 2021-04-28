@@ -3,7 +3,7 @@ node {
 		git 'https://github.com/methelegend-sys/fisrt_jenkins'
 	}
     stage('SonarQube analysis') {
-        withSonarQubeEnv('My SonarQube Server') {
+        withSonarQubeEnv('sonarqube') {
             sh 'mvn clean package sonar:sonar'
         }
     }
