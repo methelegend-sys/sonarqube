@@ -3,10 +3,11 @@ pipeline{
         
         
         stages{
-		steps{
+		
           stage('svn'){
+		  steps{
             git 'https://github.com/methelegend-sys/fisrt_jenkins.git'
-          }
+          	}
 		}
 
 
