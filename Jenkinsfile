@@ -22,7 +22,7 @@ pipeline{
 		sleep 10
               stage('Quality Gate Status Check'){
 
-                  //steps{
+                  steps{
                       //script{
                       //withSonarQubeEnv('sonarqube') { 
                       //bat "mvn sonar:sonar"
@@ -37,5 +37,6 @@ pipeline{
 		           bat "mvn clean install"
                   
                 }  
+	      }
               }
 }
