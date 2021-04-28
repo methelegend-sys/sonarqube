@@ -6,7 +6,7 @@ pipeline{
 		
           stage('svn'){
 		  steps{
-            git 'https://github.com/methelegend-sys/fisrt_jenkins.git'
+            git 'https://github.com/methelegend-sys/sonarqube.git'
           	}
 		}
 
