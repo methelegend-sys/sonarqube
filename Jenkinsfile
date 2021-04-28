@@ -3,9 +3,11 @@ pipeline{
         
         
         stages{
+		steps{
           stage('svn'){
             git 'https://github.com/methelegend-sys/fisrt_jenkins.git'
           }
+		}
 
 
               stage('Quality Gate Statuc Check'){
