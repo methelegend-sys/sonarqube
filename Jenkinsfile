@@ -11,11 +11,15 @@ pipeline{
 		}
 
 		stage('sonar analysis'){
+			steps{
 			withSonarQubeEnv('sonarqube') {
                  sh 'mvn clean package sonar:sonar'
               }
+			}
+			
 			
 		}
+		sleep 10
               stage('Quality Gate Status Check'){
 
                   //steps{
