@@ -4,7 +4,7 @@ pipeline{
         stage("Clone"){
             steps{
                 echo "========executing Clone========"
-                git 'https://github.com/methelegend-sys/fisrt_jenkins.git'
+                git 'https://github.com/methelegend-sys/sonarqube.git'
             }
             post{
                 always{
