@@ -8,13 +8,12 @@ node {
         }
     }
 }
+sleep 10
 stage("Quality Gate") {
-        retryForTimeoutExceeded {
-            timeout(time: 5, unit: 'MINUTES') {
-                def qg = waitForQualityGate() 
-                if (qg.status != 'OK') {
-                    error "Pipeline aborted due to sonar quality gate failure: ${qg.status}"
-                }
+    timeout(time: 1, unit: 'HOURS') { 
+        def qg = waitForQualityGate() 
+        if (qg.status != 'OK') {
+            error "Pipeline aborted due to quality gate failure: ${qg.status}"                }
             }
         }
     }
