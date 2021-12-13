@@ -23,7 +23,7 @@ pipeline{
             steps
             {
                 echo "Running OWSAP Dependency Check"
-                bat 'bash owasp-dependency-check.sh'
+                bat 'dependency-check.bat'
             }
         }
     }
