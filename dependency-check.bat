@@ -10,9 +10,9 @@ IF NOT EXIST %DATA_DIRECTORY% (
     echo Initially creating persistent directory: %DATA_DIRECTORY%
     mkdir %DATA_DIRECTORY%
 )
-IF NOT EXIST %CACHE_DIRECTORY% (
-    echo Initially creating persistent directory: %CACHE_DIRECTORY%
-    mkdir %CACHE_DIRECTORY%
+IF NOT EXIST %REPORT_DIRECTORY% (
+    echo Initially creating persistent directory: %REPORT_DIRECTORY%
+    mkdir %REPORT_DIRECTORY%
 )
 
 rem Make sure we are using the latest version
