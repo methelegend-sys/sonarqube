@@ -23,7 +23,7 @@ docker run --rm ^
     --volume %DATA_DIRECTORY%:/usr/share/dependency-check/data ^
     --volume %CD%/odc-reports:/report ^
     owasp/dependency-check:%DC_VERSION% ^
-    --scan /src/main ^
+    --scan /src ^
     --format "ALL" ^
     --project "%DC_PROJECT%" ^
     --out /report
